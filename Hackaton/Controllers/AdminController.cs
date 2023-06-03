@@ -7,6 +7,8 @@ namespace Hackaton.Controllers
     public class AdminController : Controller
     {
         readonly UserManager<UserApp> _userManager;
+        readonly SignInManager<UserApp> _signInManager;
+
         public IActionResult Index()
         {
             return View();
@@ -23,11 +25,11 @@ namespace Hackaton.Controllers
             if (!ModelState.IsValid)
             {
                
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(tutor, "");
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(tutor, isPersistent: false);
                     return RedirectToAction("index", "home");
                 }
 
