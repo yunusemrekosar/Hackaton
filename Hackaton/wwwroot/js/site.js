@@ -67,7 +67,7 @@ const loginOpen = () => {
 	logging.innerHTML = `
         <div
 				class="d-grid bg-transparent justify-content-center align-items-center vh-100 vw-100 z-5  gap-3 ">
-				<div class="col d-flex flex-column gap-5 " style='z-index:10'>
+				<div class="col d-flex flex-column gap-5 h-25 w-100 p-5  bg-black text-white" style='z-index:10 '>
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
 						<h3 class="text-white">Username</h3>
