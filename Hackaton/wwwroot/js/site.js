@@ -6,15 +6,20 @@
 const main = document.querySelector('header');
 const reg = document.querySelector('.registerCon');
 const logging = document.querySelector('.loginCon');
+const form = document.querySelector('.formCon');
 
 const registerOpen = () => {
 	main.classList.add('blur');
 	reg.classList.remove('hidden');
-	console.log('1');
+	if (logging.innerHTML != '') {
+		logging.innerHTML = '';
+	}
 	reg.innerHTML = `
         <div
 				class="d-grid bg-transparent justify-content-center align-items-center vh-100 vw-100 z-5  gap-3 ">
-				<div class="col d-flex flex-column gap-5 " style='z-index:10'>
+				<div class="col d-flex justify-content-center flex-column gap-5 h-50 w-100 p-5  bg-dark text-white rounded-4" style='z-index:10;
+				box-shadow: -27px 34px 52px -15px rgba(0,0,0,0.2);
+				'>
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
 						<h3 class="text-white">AD</h3>
@@ -39,7 +44,7 @@ const registerOpen = () => {
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
 						<a
-							class="nav-link btn btn-dark h-75 text-white close"
+							class="btn btn-light close"
 							onclick="registerClose()"
 							>GERİ</a
 						>
@@ -56,21 +61,22 @@ const registerOpen = () => {
 const registerClose = () => {
 	main.classList.remove('blur');
 	reg.classList.add('hidden');
-	console.log('2');
 	reg.innerHTML = '';
 };
 
 const loginOpen = () => {
 	main.classList.add('blur');
 	logging.classList.remove('hidden');
-	console.log('1');
+	if (reg.innerHTML != '') {
+		reg.innerHTML = '';
+	}
 	logging.innerHTML = `
         <div
 				class="d-grid bg-transparent justify-content-center align-items-center vh-100 vw-100 z-5  gap-3 ">
-				<div class="col d-flex flex-column gap-5 h-25 w-100 p-5  bg-black text-white" style='z-index:10 '>
+				<div class="col d-flex justify-content-center flex-column gap-5 h-50 w-100 p-5  bg-dark text-white rounded-4" style='z-index:10; box-shadow: 27px 34px 52px -15px rgba(100,100,100,0.3);'>
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
-						<h3 class="text-white">Username</h3>
+						<h3 class="text-white">KULLANICI ADI</h3>
 						<input
 							type="text"
 							id="username" />
@@ -78,7 +84,7 @@ const loginOpen = () => {
 					
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
-						<h3 class="text-white">E-MAİL</h3>
+						<h3 class="text-white">ŞİFRE-MAİL</h3>
 						<input
 							type="password"
 							id="password" />
@@ -86,7 +92,7 @@ const loginOpen = () => {
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
 						<a
-							class="nav-link btn btn-dark h-75 text-white close"
+							class="btn btn-light close"
 							onclick="loginClose()"
 							>GERİ</a
 						>
@@ -103,6 +109,32 @@ const loginOpen = () => {
 const loginClose = () => {
 	main.classList.remove('blur');
 	logging.classList.add('hidden');
-	console.log('2');
 	logging.innerHTML = '';
+};
+
+const formShow = () => {
+	main.classList.add('blur');
+	form.innerHTML = `
+	<form class='d-flex justify-content-center flex-column gap-5 h-50 w-100 p-5  bg-dark text-white rounded-4" style='z-index:10;
+				box-shadow: -27px 34px 52px -15px rgba(0,0,0,0.2);' >
+		<div class='form-col'>
+			<div class="form-group col-md-6">
+      			<label for="inputName">Adınız</label>
+      			<input type="text" class="form-control" id="inputName">
+    		</div>
+		</div>
+		<div class='form-col'>
+			<div class="form-group col-md-6">
+      			<label for="inputSurname">Soyadınız</label>
+      			<input type="text" class="form-control" id="inputSurname">
+    		</div>
+		</div>
+		<div class='form-row'>
+			<div class="form-group col-md-6">
+      			<label for="inputEmail4">Email</label>
+      			<input type="email" class="form-control" id="inputEmail4">
+    		</div>
+		</div>
+	</form>
+	`;
 };
