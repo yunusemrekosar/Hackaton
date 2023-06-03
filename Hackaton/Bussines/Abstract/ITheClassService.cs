@@ -9,7 +9,7 @@ namespace Hackaton.Bussines.Abstract
         public List<TheClass> GetAllClasses();
         public bool AddClass(AddClassModel theClass);
         public bool UpdateClass(AddClassModel TheClass);
-        public bool DeleteClass(AddClassModel TheClass);
+        public bool DeleteClass(int classId);
 
 
     }

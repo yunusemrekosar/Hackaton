@@ -14,25 +14,20 @@ namespace Hackaton.Bussines.Concrete
             _theClassDal = theClassDal;
         }
 
-        
-
         public bool AddClass(AddClassModel theClass)
         {
             throw new NotImplementedException();
         }
 
-        
-
-        public bool DeleteClass(AddClassModel TheClass)
+        public bool DeleteClass(int classId)
         {
-            throw new NotImplementedException();
+           return _theClassDal.Delete(classId);
         }
 
         public List<TheClass> GetAllClasses()
         {
-            throw new NotImplementedException();
+            return _theClassDal.GetAll();
         }
-
 
         public bool UpdateClass(AddClassModel TheClass)
         {
