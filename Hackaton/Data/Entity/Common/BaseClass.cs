@@ -10,7 +10,6 @@ namespace Hackaton.Data.Entity.Common
 
         public DateTime CreatedOn { get; set; }
         [Column(TypeName = "datetime")]
-
         public DateTime UpdatedOn { get; set; }
         public bool IsActive { get; set; }
     }
