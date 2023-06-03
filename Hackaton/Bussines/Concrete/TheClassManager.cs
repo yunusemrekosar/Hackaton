@@ -2,7 +2,7 @@
 using Hackaton.Core;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
-using Hackaton.Models.Class;
+using Hackaton.Models.TheClass;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -17,7 +17,7 @@ namespace Hackaton.Bussines.Concrete
             _mappingProfile = mappingProfile;
         }
 
-        public bool AddClass(AddClassModel theClass)
+        public bool AddClass(AddTheClassModel theClass)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +32,7 @@ namespace Hackaton.Bussines.Concrete
             throw new NotImplementedException();
         }
 
-        public bool UpdateClass(UpdateClassModel theClass)
+        public bool UpdateClass(UpdateTheClassModel theClass)
         {
             throw new NotImplementedException();
         }

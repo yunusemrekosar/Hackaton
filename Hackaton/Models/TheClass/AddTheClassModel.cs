@@ -1,6 +1,6 @@
-﻿namespace Hackaton.Models.Class
+﻿namespace Hackaton.Models.TheClass
 {
-    public class UpdateClassModel
+    public class AddTheClassModel
     {
         public string Name { get; set; }
         public int DepartmentId { get; set; }

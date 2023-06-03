@@ -1,6 +1,6 @@
 ﻿using Hackaton.Data.Entity;
 using Hackaton.Models.AddUserModel;
-using Hackaton.Models.Class;
+using Hackaton.Models.TheClass;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace Hackaton.Bussines.Abstract
@@ -14,9 +14,9 @@ namespace Hackaton.Bussines.Abstract
         public List<UserApp> GetStudentsInThisClass(int classId);
         public List<UserApp> GetStudentsInThisDepartment(int departmentId);
         public List<UserApp> GetStudentsInThisStatus(int statusId);
-        public bool UpdateUser(UpdateClassModel user);   
+        public bool UpdateUser(UpdateTheClassModel user);   
         public List<UserApp> GetAll();
         public bool DeleteUser();
-        public bool AddEditor(AddUserModel model);
+        public bool AddEditor(AddUserAppModel model);
     }
 }

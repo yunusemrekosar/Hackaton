@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Hackaton.Data.Entity;
-using Hackaton.Models.Class;
+using Hackaton.Models.TheClass;
 
 namespace Hackaton.Core
 {
@@ -8,11 +8,11 @@ namespace Hackaton.Core
     {
         public MappingProfile()
         {
-            CreateMap<UpdateClassModel, TheClass>();
-            CreateMap<TheClass, UpdateClassModel>();
+            CreateMap<UpdateTheClassModel, TheClass>();
+            CreateMap<TheClass, UpdateTheClassModel>();
 
-            CreateMap<AddClassModel, TheClass>();
-            CreateMap<TheClass, AddClassModel>();
+            CreateMap<AddTheClassModel, TheClass>();
+            CreateMap<TheClass, AddTheClassModel>();
 
 
         }
