@@ -22,14 +22,14 @@ namespace Hackaton.Bussines.Concrete
             throw new NotImplementedException();
         }
 
-        public bool DeleteClass(int theClassId)
+        public bool DeleteClass(int classId)
         {
-            throw new NotImplementedException();
+           return _theClassDal.Delete(classId);
         }
 
         public List<TheClass> GetAllClasses()
         {
-            throw new NotImplementedException();
+            return _theClassDal.GetAll();
         }
 
         public bool UpdateClass(UpdateTheClassModel theClass)

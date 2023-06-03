@@ -1,5 +1,6 @@
 ﻿using Hackaton.Bussines.Abstract;
 using Hackaton.DAL.Abstract;
+using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Hackaton.Models.AddUserModel;
 using Hackaton.Models.TheClass;
@@ -9,6 +10,7 @@ namespace Hackaton.Bussines.Concrete
     public class UserAppManager : IUserAppService
     {
         private readonly IUserAppDal _userAppDal;
+        private readonly ApplicationDbContext _context;
 
         public UserAppManager(IUserAppDal userAppDal)
         {
@@ -25,44 +27,57 @@ namespace Hackaton.Bussines.Concrete
             throw new NotImplementedException();
         }
 
-        public bool DeleteUser()
+        public bool DeleteUser(int userId)
         {
-            throw new NotImplementedException();
+            return _userAppDal.Delete(userId);
         }
 
         public List<UserApp> GetAll()
         {
-            throw new NotImplementedException();
+            return _userAppDal.GetAll();
         }
 
         public List<UserApp> GetAuditionList()
         {
-            throw new NotImplementedException();
+            return _userAppDal.GetWhere(x => x.UserStatusId == 3);
         }
 
         public List<UserApp> GetStudents()
         {
-            throw new NotImplementedException();
+            //        var query = _context.Users
+            //.Join(
+            //    _context.UserStatus,
+            //    u => u.Id,
+            //    r => r.
+            //    (u, r) => new
+            //    {
+            //        InvoiceID = invoice.Id,
+            //        CustomerName = customer.FirstName + "" + customer.LastName,
+            //        InvoiceDate = invoice.Date
+            //    }
+            //).ToList();
+            //        return query
+            return null;
         }
 
         public List<UserApp> GetStudentsInThisClass(int classId)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<UserApp> GetStudentsInThisDepartment(int departmentId)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<UserApp> GetStudentsInThisStatus(int statusId)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<UserApp> GetTutors()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public bool UpdateUser(UpdateTheClassModel user)
