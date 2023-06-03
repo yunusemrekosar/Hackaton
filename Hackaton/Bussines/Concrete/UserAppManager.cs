@@ -1,6 +1,8 @@
 ﻿using Hackaton.Bussines.Abstract;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
+using Hackaton.Models.AddUserModel;
+using Hackaton.Models.Class;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -13,7 +15,7 @@ namespace Hackaton.Bussines.Concrete
             _userAppDal = userAppDal;
         }
 
-        public bool AddEditor()
+        public bool AddEditor(AddUserModel model )
         {
             throw new NotImplementedException();
         }
@@ -63,7 +65,7 @@ namespace Hackaton.Bussines.Concrete
             throw new NotImplementedException();
         }
 
-        public bool UpdateUser(UserApp user)
+        public bool UpdateUser(UpdateClassModel user)
         {
             throw new NotImplementedException();
         }

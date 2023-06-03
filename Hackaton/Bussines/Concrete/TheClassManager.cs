@@ -1,6 +1,7 @@
 ﻿using Hackaton.Bussines.Abstract;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
+using Hackaton.Models.Class;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -13,12 +14,16 @@ namespace Hackaton.Bussines.Concrete
             _theClassDal = theClassDal;
         }
 
-        public bool AddClass(TheClass theClass)
+        
+
+        public bool AddClass(AddClassModel theClass)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteClass(TheClass TheClass)
+        
+
+        public bool DeleteClass(AddClassModel TheClass)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +33,8 @@ namespace Hackaton.Bussines.Concrete
             throw new NotImplementedException();
         }
 
-        public bool UpdateClass(TheClass TheClass)
+
+        public bool UpdateClass(AddClassModel TheClass)
         {
             throw new NotImplementedException();
         }
