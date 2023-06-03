@@ -14,6 +14,9 @@ const registerOpen = () => {
 	if (logging.innerHTML != '') {
 		logging.innerHTML = '';
 	}
+	if (form.innerHTML != '') {
+		form.innerHTML = '';
+	}
 	reg.innerHTML = `
         <div
 				class="d-grid bg-transparent justify-content-center align-items-center vh-100 vw-100 z-5  gap-3 ">
@@ -70,6 +73,9 @@ const loginOpen = () => {
 	if (reg.innerHTML != '') {
 		reg.innerHTML = '';
 	}
+	if (form.innerHTML != '') {
+		form.innerHTML = '';
+	}
 	logging.innerHTML = `
         <div
 				class="d-grid bg-transparent justify-content-center align-items-center vh-100 vw-100 z-5  gap-3 ">
@@ -110,31 +116,4 @@ const loginClose = () => {
 	main.classList.remove('blur');
 	logging.classList.add('hidden');
 	logging.innerHTML = '';
-};
-
-const formShow = () => {
-	main.classList.add('blur');
-	form.innerHTML = `
-	<form class='d-flex justify-content-center flex-column gap-5 h-50 w-100 p-5  bg-dark text-white rounded-4" style='z-index:10;
-				box-shadow: -27px 34px 52px -15px rgba(0,0,0,0.2);' >
-		<div class='form-col'>
-			<div class="form-group col-md-6">
-      			<label for="inputName">Adınız</label>
-      			<input type="text" class="form-control" id="inputName">
-    		</div>
-		</div>
-		<div class='form-col'>
-			<div class="form-group col-md-6">
-      			<label for="inputSurname">Soyadınız</label>
-      			<input type="text" class="form-control" id="inputSurname">
-    		</div>
-		</div>
-		<div class='form-row'>
-			<div class="form-group col-md-6">
-      			<label for="inputEmail4">Email</label>
-      			<input type="email" class="form-control" id="inputEmail4">
-    		</div>
-		</div>
-	</form>
-	`;
 };
