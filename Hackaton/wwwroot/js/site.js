@@ -56,7 +56,7 @@ const registerOpen = () => {
 const registerClose = () => {
 	let main = document.querySelector('header');
 	let reg = document.querySelector('.registerCon');
-	let btn = document.querySelector('.close');
+	let btn2 = document.querySelector('.close');
 	btn.addEventListener('click', () => {
 		main.classList.toggle('blur');
 		reg.classList.toggle('hidden');

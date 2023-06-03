@@ -40,5 +40,26 @@ namespace Hackaton.Data
             }
             return base.SaveChanges();
         }
+        public override Task<int> SaveChangesAsync( CancellationToken cancellationToken = default)
+        {
+            var datas = ChangeTracker.Entries<IBaseClass>();
+            foreach (var data in datas)
+            {
+                switch (data.State)
+                {
+                    case EntityState.Added:
+                        data.Entity.CreatedOn = DateTime.Now;
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        data.Entity.IsActive = true;
+                        break;
+
+                    case EntityState.Modified:
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        break;
+                }
+
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 }
