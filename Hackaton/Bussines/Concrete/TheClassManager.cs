@@ -1,20 +1,23 @@
 ﻿using Hackaton.Bussines.Abstract;
+using Hackaton.Core;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
-using Hackaton.Models.Class;
+using Hackaton.Models.TheClass;
 
 namespace Hackaton.Bussines.Concrete
 {
     public class TheClassManager : ITheClassService
     {
         private readonly ITheClassDal _theClassDal;
+        private readonly MappingProfile _mappingProfile;
 
-        public TheClassManager(ITheClassDal theClassDal)
+        public TheClassManager(ITheClassDal theClassDal, MappingProfile mappingProfile)
         {
             _theClassDal = theClassDal;
+            _mappingProfile = mappingProfile;
         }
 
-        public bool AddClass(AddClassModel theClass)
+        public bool AddClass(AddTheClassModel theClass)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +32,7 @@ namespace Hackaton.Bussines.Concrete
             return _theClassDal.GetAll();
         }
 
-        public bool UpdateClass(AddClassModel TheClass)
+        public bool UpdateClass(UpdateTheClassModel theClass)
         {
             throw new NotImplementedException();
         }
