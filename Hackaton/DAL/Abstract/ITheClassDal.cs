@@ -2,7 +2,7 @@
 
 namespace Hackaton.DAL.Abstract
 {
-    public interface IUserStatusDal : IBaseDal<UserStatus>
+    public interface ITheClassDal : IBaseDal<TheClass>
     {
     }
 }

@@ -1,6 +1,9 @@
-﻿namespace Hackaton.DAL.Abstract
+﻿using Hackaton.Data.Entity;
+
+namespace Hackaton.DAL.Abstract
 {
-    public interface IUserAppDal
+    public interface IUserAppDal : IBaseDal<UserApp>
     {
+
     }
 }

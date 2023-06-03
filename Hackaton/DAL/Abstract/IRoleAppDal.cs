@@ -1,6 +1,8 @@
-﻿namespace Hackaton.DAL.Abstract
+﻿using Hackaton.Data.Entity;
+
+namespace Hackaton.DAL.Abstract
 {
-    public class IRoleAppDal
+    public interface IRoleAppDal : IBaseDal<RoleApp>
     {
     }
 }

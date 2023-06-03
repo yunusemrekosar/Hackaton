@@ -1,6 +1,8 @@
-﻿namespace Hackaton.DAL.Abstract
+﻿using Hackaton.Data.Entity;
+
+namespace Hackaton.DAL.Abstract
 {
-    public class IDepartmentDal
+    public interface IDepartmentDal : IBaseDal<Department> 
     {
     }
 }
