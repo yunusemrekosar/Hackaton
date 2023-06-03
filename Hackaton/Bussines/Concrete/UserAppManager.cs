@@ -13,12 +13,17 @@ namespace Hackaton.Bussines.Concrete
             _userAppDal = userAppDal;
         }
 
-        public bool ChangeUserStatus(int UserId, int statusId)
+        public bool ChangeUserStatus(int userId, int statusId)
         {
             throw new NotImplementedException();
         }
 
-        public bool ChangeUserStatus(UserApp user)
+        public bool DeleteUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UserApp> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -49,6 +54,11 @@ namespace Hackaton.Bussines.Concrete
         }
 
         public List<UserApp> GetTutors()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateUser(UserApp user)
         {
             throw new NotImplementedException();
         }
