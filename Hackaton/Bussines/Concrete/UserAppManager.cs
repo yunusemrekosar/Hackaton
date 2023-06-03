@@ -44,19 +44,15 @@ namespace Hackaton.Bussines.Concrete
 
         public List<UserApp> GetStudents()
         {
-            //        var query = _context.Users
-            //.Join(
-            //    _context.UserStatus,
-            //    u => u.Id,
-            //    r => r.
-            //    (u, r) => new
-            //    {
-            //        InvoiceID = invoice.Id,
-            //        CustomerName = customer.FirstName + "" + customer.LastName,
-            //        InvoiceDate = invoice.Date
-            //    }
-            //).ToList();
-            //        return query
+            var Track = (from u in _context.Users
+                         join r in _context.UserRoles
+                         on u.Id equals r.UserId
+                         select new
+                         {
+                             Name = o.Name,
+                             Composer = o.Composer,
+                             MediaType = i.Name
+                         }).Take(5);
             return null;
         }
 
