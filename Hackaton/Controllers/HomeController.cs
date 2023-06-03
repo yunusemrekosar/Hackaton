@@ -28,6 +28,7 @@ namespace Hackaton.Controllers
             u.Email = "dadsndsa";
             u.UserName = "dadsndsa";
             u.EmailConfirmed = true;
+            u.UserStatusId = 1;
 
 
             var result = await _userManager.CreateAsync(u,"sasA123!");
