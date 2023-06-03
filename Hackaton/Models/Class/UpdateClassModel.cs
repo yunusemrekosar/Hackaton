@@ -2,5 +2,6 @@
 {
     public class UpdateClassModel
     {
+        public string Name { get; set; }
     }
 }

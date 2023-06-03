@@ -2,5 +2,6 @@
 {
     public class AddClassModel
     {
+        public string Name { get; set; }
     }
 }
