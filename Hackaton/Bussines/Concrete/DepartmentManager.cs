@@ -11,7 +11,7 @@ namespace Hackaton.Bussines.Concrete
         {
             _departmentDal = departmentDal;
         }
-
+        
 
     }
 }

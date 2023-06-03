@@ -1,4 +1,5 @@
-﻿using Hackaton.Data.Entity;
+﻿using Hackaton.Core;
+using Hackaton.Data.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,12 @@ namespace Hackaton.Controllers
     {
         readonly UserManager<UserApp> _userManager;
         readonly SignInManager<UserApp> _signInManager;
+
+        public AdminController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager = null)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
 
         public IActionResult Index()
         {
@@ -42,6 +49,7 @@ namespace Hackaton.Controllers
 
         public IActionResult TutorList()
         {
+
             return View();
         }
 
