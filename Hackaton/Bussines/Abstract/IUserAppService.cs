@@ -14,5 +14,6 @@ namespace Hackaton.Bussines.Abstract
         public bool UpdateUser(UserApp user);   
         public List<UserApp> GetAll();
         public bool DeleteUser();
+        public bool AddEditor();
     }
 }

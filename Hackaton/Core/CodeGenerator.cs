@@ -1,11 +1,10 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace Hackaton.Core
 {
-    public class CodeGenerator
+    public  static class CodeGenerator
     {
-        public string RandomPassword(int lenght)
+        public static string RandomPassword(int lenght)
         {
             var passwordBuilder = new StringBuilder();
 
@@ -32,15 +31,15 @@ namespace Hackaton.Core
             return passwordBuilder.ToString();
         }
 
-        private readonly Random _random = new Random();
+        private static readonly Random _random = new Random();
 
         // Generates a random number within a range.
-        public int RandomNumber(int min, int max)
+        public static int RandomNumber(int min, int max)
         {
             return _random.Next(min, max);
         }
 
-        public string RandomString(int size, bool lowerCase = false)
+        public static string  RandomString(int size, bool lowerCase = false)
         {
             var builder = new StringBuilder(size);
 

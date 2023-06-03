@@ -13,6 +13,11 @@ namespace Hackaton.Bussines.Concrete
             _userAppDal = userAppDal;
         }
 
+        public bool AddEditor()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ChangeUserStatus(int userId, int statusId)
         {
             throw new NotImplementedException();

@@ -1,4 +1,6 @@
-﻿using Hackaton.Core;
+﻿using Hackaton.Bussines.Abstract;
+using Hackaton.Core;
+using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +11,7 @@ namespace Hackaton.Controllers
     {
         readonly UserManager<UserApp> _userManager;
         readonly SignInManager<UserApp> _signInManager;
+        readonly IUserAppService _userService;
 
         public AdminController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager = null)
         {
@@ -31,42 +34,41 @@ namespace Hackaton.Controllers
         {
             if (!ModelState.IsValid)
             {
-               
-                var result = await _userManager.CreateAsync(tutor, "");
+                tutor.UserStatusId = 9;
+
+                var result = await _userManager.CreateAsync(tutor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(tutor, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                   await _userManager.AddToRoleAsync(tutor, "Tutor");
                 }
 
                 return NoContent();
 
             }
             return Content("burada 404 sayfasına yolla");
-            return View();
         }
 
         public IActionResult TutorList()
         {
-
-            return View();
+           
+            return View(_userService.GetTutors());
         }
 
         public IActionResult StudentList()
         {
-            return View();
+            return View(_userService.GetStudents());
         }
 
         public IActionResult AuditionList()
         {
-            return View();
+            return View(_userService.GetAuditionList());
         }
 
         [HttpPost]
-        public IActionResult ChangeUserStatus(int UserId)
+        public IActionResult ChangeUserStatus(int UserId, int statusId)
         {
-            return View();
+            return View(_userService.ChangeUserStatus(UserId, statusId));
         }
 
         public IActionResult AddEditor()
