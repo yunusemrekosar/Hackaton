@@ -2,7 +2,8 @@
 
 namespace Hackaton.Data.Entity
 {
-    public class Audition : BaseClass
+    public class UserStatus: BaseClass
     {
+        public string Name { get; set; }
     }
 }
