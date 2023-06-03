@@ -3,15 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hackaton.Data.Entity.Common
 {
-    public class BaseClass : IBaseClass
+    public class BaseClass
     {
-        public int Id { get; set; }
-        [Column(TypeName = "datetime")]
+        public virtual int Id { get; set; };
 
-        public DateTime CreatedOn { get; set; }
-        [Column(TypeName = "datetime")]
+        public virtual DateTime CreatedOn { get; set; }
 
         public DateTime UpdatedOn { get; set; }
         public bool IsActive { get; set; }
+
     }
 }
