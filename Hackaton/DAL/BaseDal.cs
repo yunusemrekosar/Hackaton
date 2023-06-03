@@ -1,6 +1,7 @@
 ﻿using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Hackaton.Data.Entity.Common;
+using System.Linq.Expressions;
 
 namespace Hackaton.DAL
 {
@@ -61,6 +62,11 @@ namespace Hackaton.DAL
             {
                 return null;
             }
+        }
+
+        public virtual List<T> GetWhere(Expression<Func<T, bool>> expression)
+        {
+           return _context.Set<T>().Where(expression).ToList();
         }
 
         public bool Update(T t)

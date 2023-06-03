@@ -1,4 +1,5 @@
 ﻿using Hackaton.Data.Entity.Common;
+using System.Linq.Expressions;
 
 namespace Hackaton.DAL
 {
@@ -13,6 +14,8 @@ namespace Hackaton.DAL
         public bool Delete(int id);
 
         public bool Update(T t);
+
+        public List<T> GetWhere(Expression<Func<T,bool>> expression);
 
     }
 }
