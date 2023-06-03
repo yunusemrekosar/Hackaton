@@ -6,8 +6,16 @@ namespace Hackaton.Data.Entity
 {
     public class UserApp : IdentityUser<int>, IBaseClass
     {
-        public string FullName { get; set; }
+        public string? Name { get; set; }
+        public string? LastName { get; set; }
+        public string? Address { get; set; }
 
+        public string? Country { get; set; }
+        public Department? Department { get; set; }
+        public int? DepartmentId { get; set; }
+
+        [Column(TypeName = "datetime")]
+        public DateTime? Birthday { get; set; }
 
         public List<TheClass>? Classes { get; set; }
 
@@ -19,6 +27,8 @@ namespace Hackaton.Data.Entity
         public DateTime CreatedOn { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime UpdatedOn { get; set; }
+
+
 
 
     }
