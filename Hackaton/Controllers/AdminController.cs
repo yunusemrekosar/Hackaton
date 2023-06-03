@@ -2,6 +2,7 @@
 using Hackaton.Core;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
+using Hackaton.Models.AddUserModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,7 +74,7 @@ namespace Hackaton.Controllers
 
         public IActionResult AddEditor()
         {
-            return View(_userService.AddEditor());
+            return View();
         }
         public IActionResult AddEditor(UserApp editör)
         {
