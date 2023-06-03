@@ -27,7 +27,7 @@ namespace Hackaton.Controllers
 
         public IActionResult Index()
         {
-            return Content(_departmentDal.GetAll().Count.ToString()) ;
+            return View() ;
         }
 
         public IActionResult Privacy()

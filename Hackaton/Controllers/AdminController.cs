@@ -1,10 +1,12 @@
 ﻿using Hackaton.Data.Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton.Controllers
 {
     public class AdminController : Controller
     {
+        readonly UserManager<UserApp> _userManager;
         public IActionResult Index()
         {
             return View();
@@ -16,8 +18,23 @@ namespace Hackaton.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTutor(UserApp tutor)
+        public async Task<IActionResult> AddTutor(UserApp tutor)
         {
+            if (!ModelState.IsValid)
+            {
+               
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("index", "home");
+                }
+
+                return NoContent();
+
+            }
+            return Content("burada 404 sayfasına yolla");
             return View();
         }
 
