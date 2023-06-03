@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Hackaton.Data.Migrations
+namespace Hackaton.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230603090622_mig1")]
+    [Migration("20230603091122_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
