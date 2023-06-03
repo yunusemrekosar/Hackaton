@@ -4,7 +4,7 @@ using Hackaton.Data.Entity.Common;
 
 namespace Hackaton.DAL
 {
-    public class BaseDal<T> : IBaseDal<T> where T : BaseClass
+    public class BaseDal<T> : IBaseDal<T> where T : class, IBaseClass
     {
 
         readonly ApplicationDbContext _context;

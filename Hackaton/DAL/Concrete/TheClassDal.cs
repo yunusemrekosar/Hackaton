@@ -2,12 +2,11 @@
 using Hackaton.Data;
 using Hackaton.Data.Entity;
 
-
 namespace Hackaton.DAL.Concrete
 {
-    public class UserAppDal : BaseDal<UserApp>, IUserAppDal
+    public class TheClassDal : BaseDal<ClassDate>, IClassDateDal
     {
-        public UserAppDal(ApplicationDbContext context) : base(context)
+        public TheClassDal(ApplicationDbContext context) : base(context)
         {
         }
     }

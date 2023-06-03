@@ -2,7 +2,7 @@
 
 namespace Hackaton.DAL
 {
-    public interface IBaseDal<T> where T : BaseClass
+    public interface IBaseDal<T> where T : class, IBaseClass
     {
         public bool Create(T t);
 
