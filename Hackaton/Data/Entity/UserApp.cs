@@ -1,5 +1,4 @@
 ﻿using Hackaton.Data.Entity.Common;
-using Hackaton.Data.Entity.Inheritance;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
