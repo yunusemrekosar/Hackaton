@@ -11,6 +11,14 @@ namespace Hackaton.Data
             : base(options)
         {
         }
+
+        public DbSet<UserApp> Users { get; set; }
+        public DbSet<RoleApp> Roles { get; set; }
+        public DbSet<UserStatus> UserStatus { get; set; }
+        public DbSet<TheClass> Classes { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<ClassDate> ClassDates { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var datas = ChangeTracker.Entries<IBaseClass>();
@@ -20,6 +28,8 @@ namespace Hackaton.Data
                 {
                     case EntityState.Added:
                         data.Entity.CreatedOn = DateTime.Now;
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        data.Entity.IsActive = true;
                         break;
 
                     case EntityState.Modified:

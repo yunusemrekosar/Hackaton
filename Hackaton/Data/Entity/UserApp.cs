@@ -6,9 +6,11 @@ namespace Hackaton.Data.Entity
 {
     public class UserApp : IdentityUser<int>, IBaseClass
     {
-        public string NameSurname { get; set; }
+        public string FullName { get; set; }
+
 
         public List<TheClass> Classes { get; set; }
+
         public UserStatus UserStatus { get; set; }
         public int UserStatusId { get; set; }
 

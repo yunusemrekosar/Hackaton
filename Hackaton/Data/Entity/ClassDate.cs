@@ -1,6 +1,8 @@
-﻿namespace Hackaton.Data.Entity
+﻿using Hackaton.Data.Entity.Common;
+
+namespace Hackaton.Data.Entity
 {
-    public class ClassDate
+    public class ClassDate: BaseClass
     {
         public int Day { get; set; }
         public string StartDate { get; set; }
