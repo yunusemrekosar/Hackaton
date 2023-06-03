@@ -4,6 +4,7 @@ using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Hackaton.Models.AddUserModel;
 using Hackaton.Models.TheClass;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -44,21 +45,25 @@ namespace Hackaton.Bussines.Concrete
 
         public List<UserApp> GetStudents()
         {
-            var Track = (from u in _context.Users
-                         join r in _context.UserRoles
-                         on u.Id equals r.UserId
-                         select new
-                         {
-                             Name = o.Name,
-                             Composer = o.Composer,
-                             MediaType = i.Name
-                         }).Take(5);
             return null;
         }
 
         public List<UserApp> GetStudentsInThisClass(int classId)
         {
+            //        var query = _context.Users
+            //.Join(
+            //    _context.use,
+            //    customer => customer.CustomerId,
+            //    invoice => invoice.Customer.CustomerId,
+            //    (customer, invoice) => new
+            //    {
+            //        InvoiceID = invoice.Id,
+            //        CustomerName = customer.FirstName + "" + customer.LastName,
+            //        InvoiceDate = invoice.Date
+            //    }
+            //).ToList();
             return null;
+
         }
 
         public List<UserApp> GetStudentsInThisDepartment(int departmentId)
