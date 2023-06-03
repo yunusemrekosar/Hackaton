@@ -12,6 +12,8 @@ namespace Hackaton.DAL.Concrete
         readonly ApplicationDbContext _context;
         public ClassDateDal(ApplicationDbContext context) : base(context)
         {
+            _context = context;
+
         }
         public override List<ClassDate> GetAll()
         {

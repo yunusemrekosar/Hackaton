@@ -13,6 +13,8 @@ namespace Hackaton.DAL.Concrete
 
         public DepartmentDal(ApplicationDbContext context) : base(context)
         {
+            _context = context;
+
         }
         public override List<Department> GetAll()
         {

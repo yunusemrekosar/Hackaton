@@ -12,27 +12,22 @@ namespace Hackaton.Controllers
         private readonly ILogger<HomeController> _logger;
         readonly IUserAppDal _userAppDal;
         readonly UserManager<UserApp> _userManager;
+        readonly ITheClassDal _classDal;
+        readonly IDepartmentDal _departmentDal;
 
 
-        public HomeController(ILogger<HomeController> logger, UserManager<UserApp> userManager, IUserAppDal userAppDal)
+        public HomeController(ILogger<HomeController> logger, UserManager<UserApp> userManager, IUserAppDal userAppDal, ITheClassDal classDal, IDepartmentDal departmentDal)
         {
             _logger = logger;
             _userManager = userManager;
             _userAppDal = userAppDal;
+            _classDal = classDal;
+            _departmentDal = departmentDal;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            UserApp u = new();
-            u.FullName = "";
-            u.Email = "dadsndsa";
-            u.UserName = "dadsndsa";
-            u.EmailConfirmed = true;
-
-
-            var result = await _userManager.CreateAsync(u,"sasA123!");
-
-            return View();
+            return Content(_departmentDal.GetAll().Count.ToString()) ;
         }
 
         public IActionResult Privacy()

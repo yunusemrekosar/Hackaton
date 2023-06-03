@@ -13,7 +13,8 @@ namespace Hackaton.DAL.Concrete
 
         public RoleAppDal(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
-        
+
     }
 }

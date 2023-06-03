@@ -13,6 +13,7 @@ namespace Hackaton.DAL.Concrete
 
         public UserAppDal(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
 
         public override List<UserApp> GetAll()

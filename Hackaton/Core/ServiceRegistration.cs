@@ -14,6 +14,7 @@ namespace Hackaton.Core
             services.AddScoped<IRoleAppDal, RoleAppDal>();
             services.AddScoped<ITheClassDal, TheClassDal>();
             services.AddScoped<IUserStatusDal, UserStatusDall>();
+            services.AddScoped<IDepartmentDal, DepartmentDal>();
         }
     }
 }

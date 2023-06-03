@@ -13,6 +13,7 @@ namespace Hackaton.DAL.Concrete
 
         public UserStatusDall(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
     }
 }

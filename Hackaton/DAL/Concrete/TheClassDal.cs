@@ -2,7 +2,7 @@
 using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Hackaton.DAL.Concrete
@@ -13,13 +13,15 @@ namespace Hackaton.DAL.Concrete
 
         public TheClassDal(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
             
         public override List<TheClass> GetAll()
         {
             try
             {
-                return _context.Classes.Include(x => x.Users).Include(b => b.ClassDates).Include(w=>w.Department).ToList(); //todo isimlere bka
+                List <TheClass> a = _context.Classes.Include(w=>w.Department).ToList(); //todo isimlere bka
+                return a;
             }
             catch
             {
