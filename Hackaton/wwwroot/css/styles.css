@@ -11455,7 +11455,7 @@ body {
 			rgba(0, 0, 0, 0.7) 75%,
 			#000 100%
 		),
-		url('~/../../images/yapay-zeka-operatorlugu-prompt-uzmanligi-egitimi-bg-300x300.webp');
+		url('../assets/img/yapay-zeka-operatorlugu-prompt-uzmanligi-egitimi-bg-300x300.webp');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
