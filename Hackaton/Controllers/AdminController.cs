@@ -73,7 +73,7 @@ namespace Hackaton.Controllers
 
         public IActionResult AddEditor()
         {
-            return View(_userService.AddEditor());
+            return View();
         }
         public IActionResult AddEditor(UserApp editör)
         {

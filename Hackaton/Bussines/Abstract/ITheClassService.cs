@@ -8,8 +8,8 @@ namespace Hackaton.Bussines.Abstract
     {
         public List<TheClass> GetAllClasses();
         public bool AddClass(AddClassModel theClass);
-        public bool UpdateClass(AddClassModel TheClass);
-        public bool DeleteClass(AddClassModel TheClass);
+        public bool UpdateClass(UpdateClassModel theClass);
+        public bool DeleteClass(int theClassId);
 
 
     }
