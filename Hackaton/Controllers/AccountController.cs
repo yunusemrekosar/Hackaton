@@ -29,27 +29,34 @@ namespace Hackaton.Controllers
                     return NoContent();
 
             }
-            return View();
+            return Content("burada 404 sayfasına yolla");
         }
 
 
         [HttpPost]
-        public IActionResult SignUp(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
+        public async Task<IActionResult> SignUp(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    var user = new UserApp()
-            //    {
+            if (!ModelState.IsValid)
+            {
+                var user = new UserApp()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    EmailConfirmed = true
+                };
 
-            //    }
-            //    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-            //    {
-            //        return RedirectToAction("index", "home");
-            //    }
-            //    return NoContent();
+                var result = await _userManager.CreateAsync(user, model.Password);
 
-            //}
-            return View();
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("index", "home");
+                }
+
+                return NoContent();
+
+            }
+            return Content("burada 404 sayfasına yolla");
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Hackaton.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<ClassDate> ClassDates { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override int SaveChanges()
         {
             var datas = ChangeTracker.Entries<IBaseClass>();
             foreach (var data in datas)
@@ -38,7 +38,7 @@ namespace Hackaton.Data
                 }
 
             }
-            return base.SaveChangesAsync(cancellationToken);
+            return base.SaveChanges();
         }
     }
 }

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\" />
+    <Folder Include="DAL\Concrete\" />
   </ItemGroup>
 
 </Project>
