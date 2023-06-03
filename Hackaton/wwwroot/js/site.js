@@ -25,24 +25,24 @@ const registerOpen = () => {
 				'>
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
-						<h3 class="text-white">AD</h3>
-						<input
-							type="text"
-							id="name" />
-					</div>
-					<div
-						class="d-flex gap-1 align-items-center justify-content-between">
-						<h3 class="text-white">SOYAD</h3>
-						<input
-							type="text"
-							id="surname" />
-					</div>
-					<div
-						class="d-flex gap-1 align-items-center justify-content-between">
 						<h3 class="text-white">E-MAİL</h3>
 						<input
 							type="email"
 							id="email" />
+					</div>
+					<div
+						class="d-flex gap-1 align-items-center justify-content-between">
+						<h3 class="text-white">ŞİFRE</h3>
+						<input
+							type="password"
+							id="password" />
+					</div>
+					<div
+						class="d-flex gap-1 align-items-center justify-content-between">
+						<h3 class="text-white">ŞİFRE DOĞRULAMA</h3>
+						<input
+							type="password"
+							id="passwordRepeat" />
 					</div>
 					<div
 						class="d-flex gap-1 align-items-center justify-content-between">
