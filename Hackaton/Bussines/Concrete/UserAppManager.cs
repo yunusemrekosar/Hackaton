@@ -4,6 +4,7 @@ using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Hackaton.Models.AddUserModel;
 using Hackaton.Models.TheClass;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton.Bussines.Concrete
@@ -12,10 +13,13 @@ namespace Hackaton.Bussines.Concrete
     {
         private readonly IUserAppDal _userAppDal;
         private readonly ApplicationDbContext _context;
+        readonly UserManager<UserApp> _UserManager;
 
-        public UserAppManager(IUserAppDal userAppDal)
+        public UserAppManager(IUserAppDal userAppDal, UserManager<UserApp> userManager, ApplicationDbContext context)
         {
             _userAppDal = userAppDal;
+            _UserManager = userManager;
+            _context = context;
         }
 
         public bool AddEditor(AddUserAppModel model )
@@ -31,6 +35,11 @@ namespace Hackaton.Bussines.Concrete
         public bool DeleteUser(int userId)
         {
             return _userAppDal.Delete(userId);
+        }
+
+        public bool DeleteUser()
+        {
+            throw new NotImplementedException();
         }
 
         public List<UserApp> GetAll()
@@ -76,9 +85,10 @@ namespace Hackaton.Bussines.Concrete
             return null;
         }
 
-        public List<UserApp> GetTutors()
+        public  async Task<List<UserApp>> GetTutors()
         {
-            return null;
+            var a = await _UserManager.GetUsersInRoleAsync("Tutors");
+            return new List<UserApp>(a.Select(x => (UserApp)x));
         }
 
         public bool UpdateUser(UpdateTheClassModel user)
