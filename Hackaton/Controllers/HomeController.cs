@@ -19,7 +19,7 @@ namespace Hackaton.Controllers
 
         public async Task<IActionResult> Privacy()
         {
-            return View(await _userAppService.GetTutors());
+            return View(await _userAppService.GetStudents());
         }
     }
 }
