@@ -60,9 +60,11 @@ namespace Hackaton.Bussines.Concrete
             return _userAppDal.GetWhere(x => x.UserStatusId == 3);
         }
 
-        public List<UserApp> GetStudents()
+        public async Task<List<UserApp>> GetStudents()
         {
-            return _context.Users.Where(x => x.Roles.Any(x => x.Name == "Student")).ToList();
+            var a = await _userManager.GetUsersInRoleAsync("Student");
+
+            return new List<UserApp>(a.Select(x => (UserApp)x));
         }
 
         public List<UserApp> GetStudentsInThisClass(int classId)
@@ -83,9 +85,8 @@ namespace Hackaton.Bussines.Concrete
         public  async Task<List<UserApp>> GetTutors()
         {
             var a = await _userManager.GetUsersInRoleAsync("Tutor");
-            
-             var b=   new List<UserApp>(a.Select(x => (UserApp)x));
-            return b;
+
+            return new List<UserApp>(a.Select(x => (UserApp)x));
         }
 
         public bool UpdateUser(UpdateTheClassModel user)
