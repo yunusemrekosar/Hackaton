@@ -17,14 +17,16 @@ namespace Hackaton.Bussines.Concrete
         private readonly IMapper _mapper;
         private readonly ITheClassDal _theClassDal;
         private readonly UserManager<UserApp> _userManager;
+        private readonly IRoleAppDal _roleAppDal;
 
-        public UserAppManager(IUserAppDal userAppDal, IMapper mapper, ApplicationDbContext context, ITheClassDal theClassDal, UserManager<UserApp> userManager)
+        public UserAppManager(IUserAppDal userAppDal, IMapper mapper, ApplicationDbContext context, ITheClassDal theClassDal, UserManager<UserApp> userManager, IRoleAppDal roleAppDal)
         {
             _userAppDal = userAppDal;
             _mapper = mapper;
             _context = context;
             _theClassDal = theClassDal;
             _userManager = userManager;
+            _roleAppDal = roleAppDal;
         }
 
         public bool AddEditor(AddUserAppModel model ) //todo: gerekli degil?
@@ -32,6 +34,22 @@ namespace Hackaton.Bussines.Concrete
             UserApp userApp = _mapper.Map<UserApp>(model);
             _userAppDal.Create(userApp);
             return true;
+        }
+
+        public async Task<bool> ChangeUserRole(int userId, int roleId)
+        {
+            try
+            {
+                string roleName = _roleAppDal.GetWhere(x => x.Id == roleId).First().Name;
+                UserApp user = _userAppDal.GetById(userId);
+                await _userManager.AddToRoleAsync(user, roleName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public bool ChangeUserStatus(int userId, int statusId)
@@ -58,7 +76,10 @@ namespace Hackaton.Bussines.Concrete
         public async Task<List<UserApp>> GetStudents()
         {
             var a = await _userManager.GetUsersInRoleAsync("Student");
-
+            foreach (var item in a)
+            {
+                item.Department = _context.Departments.FirstOrDefault(x => x.Id == item.DepartmentId);
+            }
             return new List<UserApp>(a.Select(x => (UserApp)x));
         }
 
@@ -80,6 +101,10 @@ namespace Hackaton.Bussines.Concrete
         public  async Task<List<UserApp>> GetTutors()
         {
             var a = await _userManager.GetUsersInRoleAsync("Tutor");
+            foreach (var item in a)
+            {
+                item.Department = _context.Departments.FirstOrDefault(x => x.Id == item.DepartmentId);
+            }
 
             return new List<UserApp>(a.Select(x => (UserApp)x));
         }
@@ -87,8 +112,16 @@ namespace Hackaton.Bussines.Concrete
         public async Task<List<UserApp>> GetUnknownList()
         {
             var a = await _userManager.GetUsersInRoleAsync("Unknown");
-
+            foreach (var item in a)
+            {
+                item.Department = _context.Departments.FirstOrDefault(x => x.Id == item.DepartmentId);
+            }
             return new List<UserApp>(a.Select(x => (UserApp)x));
+        }
+
+        public UserApp GetUserById(int userId)
+        {
+            return _userAppDal.GetById(userId);
         }
 
         public bool UpdateUser(UpdateTheClassModel user)

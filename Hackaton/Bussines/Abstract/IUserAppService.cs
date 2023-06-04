@@ -12,6 +12,7 @@ namespace Hackaton.Bussines.Abstract
         public List<UserApp> GetAuditionList();
         public Task<List<UserApp>> GetUnknownList();
         public bool ChangeUserStatus(int userId, int statusId);
+        public Task<bool> ChangeUserRole(int userId, int roleId);
         public List<UserApp> GetStudentsInThisClass(int classId);
         public List<UserApp> GetStudentsInThisDepartment(int departmentId);
         public List<UserApp> GetStudentsInThisStatus(int statusId);
@@ -20,6 +21,7 @@ namespace Hackaton.Bussines.Abstract
         public List<UserApp> GetAll();
         public bool DeleteUser(int userId);
         public bool AddEditor(AddUserAppModel model);
+        public UserApp GetUserById(int userId);
 
 
     }
