@@ -12,5 +12,7 @@ namespace Hackaton.Data.Entity
         public DateTime CreatedOn { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime UpdatedOn { get; set; }
+
+        public List<UserApp> Users { get; set; }
     }
 }

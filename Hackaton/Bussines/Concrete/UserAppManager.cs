@@ -2,8 +2,10 @@
 using Hackaton.DAL.Abstract;
 using Hackaton.Data;
 using Hackaton.Data.Entity;
-using Hackaton.Models.AddUserModel;
+using Hackaton.Models.UserApp;
 using Hackaton.Models.TheClass;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -11,20 +13,30 @@ namespace Hackaton.Bussines.Concrete
     {
         private readonly IUserAppDal _userAppDal;
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly ITheClassDal _theClassDal;
+        private readonly UserManager<UserApp> _userManager;
 
-        public UserAppManager(IUserAppDal userAppDal)
+        public UserAppManager(IUserAppDal userAppDal, IMapper mapper, ApplicationDbContext context, ITheClassDal theClassDal, UserManager<UserApp> userManager)
         {
             _userAppDal = userAppDal;
+            _mapper = mapper;
+            _context = context;
+            _theClassDal = theClassDal;
+            _userManager = userManager;
         }
 
         public bool AddEditor(AddUserAppModel model )
         {
-            throw new NotImplementedException();
+            UserApp userApp = _mapper.Map<UserApp>(model);
+            _userAppDal.Create(userApp);
+            return true;
         }
 
         public bool ChangeUserStatus(int userId, int statusId)
         {
-            throw new NotImplementedException();
+            _userAppDal.GetById(userId).UserStatusId = statusId;
+            return true;
         }
 
         public bool DeleteUser(int userId)
@@ -44,45 +56,34 @@ namespace Hackaton.Bussines.Concrete
 
         public List<UserApp> GetStudents()
         {
-            //        var query = _context.Users
-            //.Join(
-            //    _context.UserStatus,
-            //    u => u.Id,
-            //    r => r.
-            //    (u, r) => new
-            //    {
-            //        InvoiceID = invoice.Id,
-            //        CustomerName = customer.FirstName + "" + customer.LastName,
-            //        InvoiceDate = invoice.Date
-            //    }
-            //).ToList();
-            //        return query
-            return null;
+            return _context.Users.Where(x => x.Roles.Any(x => x.Name == "Student")).ToList();
         }
 
         public List<UserApp> GetStudentsInThisClass(int classId)
         {
-            return null;
+            return _context.Users.Where(x=>x.Classes.Any(x=>x.Id== classId)).ToList();
         }
 
         public List<UserApp> GetStudentsInThisDepartment(int departmentId)
         {
-            return null;
+            return _userAppDal.GetWhere(x=>x.DepartmentId == departmentId);
         }
 
         public List<UserApp> GetStudentsInThisStatus(int statusId)
         {
-            return null;
+            return _context.Users.Where(x=>x.UserStatusId== statusId).ToList();
         }
 
         public List<UserApp> GetTutors()
         {
-            return null;
+            return _context.Users.Where(x => x.Roles.Any(x => x.Name == "Tutor")).ToList();
         }
 
         public bool UpdateUser(UpdateTheClassModel user)
         {
-            throw new NotImplementedException();
+            UserApp upUser = _mapper.Map<UserApp>(user);
+            _context.Users.Update(upUser);
+            return true;
         }
     }
 }

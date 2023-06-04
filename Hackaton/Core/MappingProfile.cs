@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hackaton.Data.Entity;
 using Hackaton.Models.TheClass;
+using Hackaton.Models.UserApp;
 
 namespace Hackaton.Core
 {
@@ -13,6 +14,9 @@ namespace Hackaton.Core
 
             CreateMap<AddTheClassModel, TheClass>();
             CreateMap<TheClass, AddTheClassModel>();
+
+            CreateMap<AddUserAppModel, UserApp>();
+            CreateMap<UserApp, AddUserAppModel>();
 
 
         }

@@ -28,7 +28,7 @@ namespace Hackaton.Data.Entity
         [Column(TypeName = "datetime")]
         public DateTime UpdatedOn { get; set; }
 
-
+        public List<RoleApp> Roles { get; set; }
 
 
     }

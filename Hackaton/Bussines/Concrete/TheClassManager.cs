@@ -1,5 +1,5 @@
-﻿using Hackaton.Bussines.Abstract;
-using Hackaton.Core;
+﻿using AutoMapper;
+using Hackaton.Bussines.Abstract;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
 using Hackaton.Models.TheClass;
@@ -9,17 +9,19 @@ namespace Hackaton.Bussines.Concrete
     public class TheClassManager : ITheClassService
     {
         private readonly ITheClassDal _theClassDal;
-        private readonly MappingProfile _mappingProfile;
+        private readonly IMapper _mapper;
 
-        public TheClassManager(ITheClassDal theClassDal, MappingProfile mappingProfile)
+        public TheClassManager(ITheClassDal theClassDal, IMapper mapper)
         {
             _theClassDal = theClassDal;
-            _mappingProfile = mappingProfile;
+            _mapper = mapper;
         }
 
         public bool AddClass(AddTheClassModel theClass)
         {
-            throw new NotImplementedException();
+            TheClass Class = _mapper.Map<TheClass>(theClass);
+            _theClassDal.Create(Class);
+            return true;
         }
 
         public bool DeleteClass(int classId)
@@ -34,7 +36,9 @@ namespace Hackaton.Bussines.Concrete
 
         public bool UpdateClass(UpdateTheClassModel theClass)
         {
-            throw new NotImplementedException();
+            TheClass Class = _mapper.Map<TheClass>(theClass);
+            _theClassDal.Update(Class);
+            return true;
         }
     }
 }
