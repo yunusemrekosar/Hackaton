@@ -6,6 +6,7 @@ using Hackaton.Models.UserApp;
 using Hackaton.Models.TheClass;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Hackaton.Bussines.Concrete
 { //end
@@ -90,5 +91,16 @@ namespace Hackaton.Bussines.Concrete
             return true;
         }
 
+        public bool UpdateUserAudition(GetAuditionModel user)
+        {
+            if (user.PhoneNumber != null)
+            {
+                UserApp upUser = _mapper.Map<UserApp>(user);
+                upUser.UserStatusId = 3;
+                _context.Users.Update(upUser);
+                return true;
+            }
+            return false;
+        }
     }
 }
