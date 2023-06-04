@@ -4,7 +4,6 @@
     Layout = null;
 }
 
-@foreach(var tutor in Model)
-{
-    <li>@tutor.Name  --  @tutor.Email</li>
+@foreach(var student in Model){
+    <li>@student.Name -- @student.Email</li>
 }
