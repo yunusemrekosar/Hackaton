@@ -25,7 +25,7 @@ namespace Hackaton.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(  _userAppService.GetAuditionList());
         }
 
         public IActionResult AddTutor()
@@ -53,21 +53,18 @@ namespace Hackaton.Controllers
             return Content("burada 404 sayfasına yolla");
         }
 
-        public IActionResult TutorList()
+        public async Task<IActionResult> TutorList()
         {
            
-            return View(_userAppService.GetTutors());
+            return View(await _userAppService.GetTutors());
         }
 
-        public IActionResult StudentList()
+        public async Task<IActionResult> StudentList()
         {
-            return View(_userAppService.GetStudents());
+            return View(await _userAppService.GetStudents());
         }
 
-        public IActionResult AuditionList()
-        {
-            return View(_userAppService.GetAuditionList());
-        }
+
 
         [HttpPost]
         public IActionResult ChangeUserStatus(int UserId, int statusId)

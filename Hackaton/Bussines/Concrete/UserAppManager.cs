@@ -8,7 +8,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
 namespace Hackaton.Bussines.Concrete
-{
+{ //end
     public class UserAppManager : IUserAppService
     {
         private readonly IUserAppDal _userAppDal;
@@ -42,11 +42,6 @@ namespace Hackaton.Bussines.Concrete
         public bool DeleteUser(int userId)
         {
             return _userAppDal.Delete(userId);
-        }
-
-        public bool DeleteUser()
-        {
-            throw new NotImplementedException();
         }
 
         public List<UserApp> GetAll()
