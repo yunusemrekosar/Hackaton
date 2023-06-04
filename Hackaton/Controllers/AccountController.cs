@@ -1,5 +1,4 @@
 ﻿using Hackaton.Data.Entity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel;
