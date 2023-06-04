@@ -1,5 +1,6 @@
 ﻿using Hackaton.Bussines.Abstract;
 using Hackaton.Bussines.Concrete;
+using Hackaton.DAL.Abstract;
 using Hackaton.Models.UserApp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,17 +8,19 @@ using System.Data;
 
 namespace Hackaton.Controllers
 {
-    [Authorize(Roles = "Student , NewComer , Admin")]
+    [Authorize]
     public class StudentController : Controller
     {
+    readonly IDepartmentDal _departmentDal;
         private readonly IUserAppService _userAppService;
 
-        public StudentController(IUserAppService userAppService)
-        {
-            _userAppService = userAppService;
-        }
+		public StudentController(IUserAppService userAppService, IDepartmentDal departmentDal)
+		{
+			_userAppService = userAppService;
+			_departmentDal = departmentDal;
+		}
 
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index()
         {
             return View(await _userAppService.GetTutors());
         }
@@ -29,7 +32,8 @@ namespace Hackaton.Controllers
 
         public IActionResult GetAudition()
         {
-            return View();
+
+            return View(_departmentDal.GetAll());
         }
 
         [HttpPost]

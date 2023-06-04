@@ -98,6 +98,7 @@ namespace Hackaton.Bussines.Concrete
                 UserApp upUser = _mapper.Map<UserApp>(user);
                 upUser.UserStatusId = 3;
                 _context.Users.Update(upUser);
+                _context.SaveChanges();
                 return true;
             }
             return false;

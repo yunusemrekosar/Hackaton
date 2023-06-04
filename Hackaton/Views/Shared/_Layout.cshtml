@@ -51,10 +51,14 @@
 					<li class="nav-item">
 						<a class="nav-link">DEPARTMANLAR</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link"
-						   href="#">İLETİŞİM FORMU</a>
-					</li>
+					@if (SignInManager.IsSignedIn(User))
+					{
+						<li class="nav-item">
+							<a class="nav-link"
+							   href="/Student/GetAudition">İLETİŞİM FORMU</a>
+						</li>
+
+					}
 				</ul>
 			</div>
 
