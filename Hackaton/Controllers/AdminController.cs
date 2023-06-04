@@ -76,17 +76,16 @@ namespace Hackaton.Controllers
 		{
 			return View(_userAppService.ChangeUserStatus(UserId, statusId));
 		}
-		//[HttpPost]
-		//public async IActionResult ChangeUserRole(int UserId, int statusId)
-		//{
-		//	_userAppService.
-
-
-		//	return View await _userManager.AddToRoleAsync(UserId, statusId));
-		//}
-		public IActionResult AddEditor()
+		[HttpPost]
+		public async Task<IActionResult> ChangeUserRole(int UserId, int RoleId)
 		{
-			return View();
-		}
+			if ( await _userAppService.ChangeUserRole(UserId, RoleId))
+			{
+				return RedirectToAction("Index", "admin");
+
+			}
+			return NoContent();
+        }
+    
 	}
 }
