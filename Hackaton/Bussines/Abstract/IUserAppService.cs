@@ -7,8 +7,8 @@ namespace Hackaton.Bussines.Abstract
 {
     public interface IUserAppService
     {
-        public Task<List<UserApp>> GetTutors(); 
-        public List<UserApp> GetStudents();
+        public Task<List<UserApp>> GetTutors();
+        public Task<List<UserApp>> GetStudents();
         public List<UserApp> GetAuditionList();
         public bool ChangeUserStatus(int userId, int statusId);
         public List<UserApp> GetStudentsInThisClass(int classId);
