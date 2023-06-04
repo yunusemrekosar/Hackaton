@@ -6,6 +6,7 @@ using Hackaton.Models.UserApp;
 using Hackaton.Models.TheClass;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton.Bussines.Concrete
 {
@@ -44,6 +45,11 @@ namespace Hackaton.Bussines.Concrete
             return _userAppDal.Delete(userId);
         }
 
+        public bool DeleteUser()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<UserApp> GetAll()
         {
             return _userAppDal.GetAll();
@@ -74,9 +80,12 @@ namespace Hackaton.Bussines.Concrete
             return _context.Users.Where(x=>x.UserStatusId== statusId).ToList();
         }
 
-        public List<UserApp> GetTutors()
+        public  async Task<List<UserApp>> GetTutors()
         {
-            return _context.Users.Where(x => x.Roles.Any(x => x.Name == "Tutor")).ToList();
+            var a = await _userManager.GetUsersInRoleAsync("Tutor");
+            
+             var b=   new List<UserApp>(a.Select(x => (UserApp)x));
+            return b;
         }
 
         public bool UpdateUser(UpdateTheClassModel user)
@@ -85,5 +94,6 @@ namespace Hackaton.Bussines.Concrete
             _context.Users.Update(upUser);
             return true;
         }
+
     }
 }
