@@ -10,7 +10,7 @@ namespace Hackaton.Core
         {
             var emailMessage = new MimeMessage();
             //attach =  attach.Replace("\\", "//");
-            emailMessage.From.Add(new MailboxAddress("Acun Abi", "onay@acunmedya.com"));
+            emailMessage.From.Add(new MailboxAddress("Acunmedya", "onay@acunmedya.com"));
             emailMessage.To.Add(new MailboxAddress("Kullanici", mailTo));
             //emailMessage.Cc.Add(new MailboxAddress("CC you", "sahil.emirov2@gmail.com"));
             //emailMessage.Bcc.Add(new MailboxAddress("BCC you", "beststore4world@gmail.com"));

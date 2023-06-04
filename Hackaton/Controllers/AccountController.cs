@@ -68,11 +68,13 @@ namespace Hackaton.Controllers
 
 					return RedirectToAction("index", "home");
 				}
-				return NoContent();
-			}
-			return Content("burada 404 sayfasına yolla");
-		}
+                return RedirectToAction("Insddasddex", "home");
 
+            }
+            return RedirectToAction("Insddasddex", "home");
+
+        }
+        [HttpPost]
 		public async Task<IActionResult> ResetPassword(string Email)
 		{
 			if (ModelState.IsValid)
@@ -91,11 +93,11 @@ namespace Hackaton.Controllers
 					protocol: Request.Scheme);
 				MailKitService.SendMailPassword(Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-				return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
+				return RedirectToAction("Index","home");
 			}
-			return NoContent();
-		}
-		[HttpGet]
+            return RedirectToAction("Insddasddex", "home");
+        }
+        [HttpGet]
 		public IActionResult NewPassword()
 		{
 			return View();
