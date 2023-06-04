@@ -18,6 +18,10 @@ namespace Hackaton.Core
             CreateMap<AddUserAppModel, UserApp>();
             CreateMap<UserApp, AddUserAppModel>();
 
+            CreateMap<GetAuditionModel, UserApp>();
+            CreateMap<UserApp, GetAuditionModel>();
+
+
 
         }
     }

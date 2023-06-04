@@ -15,8 +15,11 @@ namespace Hackaton.Bussines.Abstract
         public List<UserApp> GetStudentsInThisDepartment(int departmentId);
         public List<UserApp> GetStudentsInThisStatus(int statusId);
         public bool UpdateUser(UpdateTheClassModel user);   
+        public bool UpdateUserAudition(GetAuditionModel user);   
         public List<UserApp> GetAll();
         public bool DeleteUser(int userId);
         public bool AddEditor(AddUserAppModel model);
+
+
     }
 }
