@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Hackaton.Data.Entity;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UserApp> SignInManager
+@inject UserManager<UserApp> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -55,22 +60,38 @@
 
 			<div class="collapse navbar-collapse"
 				 id="navbarResponsive">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item mx-1">
-						<a style="padding:1rem;  background-color:#7d5ebd;"
-							href="/Identity/Account/Register"
-						    class="nav-link btn btn-warning text-white register">
-							KAYIT OL
-						</a>
-					</li>
-					<li class="nav-item mx-1">
-						<a style="padding:1rem; background-color:#7d5ebd;"
-						    href="/Identity/Account/Login"
-						    class="nav-link btn btn-warning text-white">
-							GİRİŞ YAP
-						</a>
-					</li>
-				</ul>
+				@if (SignInManager.IsSignedIn(User))
+				{
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item mx-1">
+							<a style="padding:1rem;  background-color:#7d5ebd;"
+							   href="/Identity/Account/Register"
+							   class="nav-link btn btn-warning text-white register">
+								KAYIT OL
+							</a>
+						</li>
+						<li class="nav-item mx-1">
+							<a style="padding:1rem; background-color:#7d5ebd;"
+							   href="/Identity/Account/Login"
+							   class="nav-link btn btn-warning text-white">
+								GİRİŞ YAP
+							</a>
+						</li>
+					</ul>
+				}
+				else
+				{
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item mx-1">
+								<button style="padding:1rem; background-color:#7d5ebd;"
+										type="submit"
+									href="/Identity/Account/Login"
+									class="nav-link btn btn-warning text-white register">
+									ÇIKIŞ YAP
+								</button>
+						</li>
+					</ul>
+				}
 			</div>
 		</div>
 	</nav>

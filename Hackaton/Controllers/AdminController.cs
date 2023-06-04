@@ -9,93 +9,98 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hackaton.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class AdminController : Controller
-    {
-        readonly UserManager<UserApp> _userManager;
-        readonly SignInManager<UserApp> _signInManager;
-        readonly IUserAppService _userAppService;
+	[Authorize(Roles = "Admin")]
+	public class AdminController : Controller
+	{
+		readonly UserManager<UserApp> _userManager;
+		readonly SignInManager<UserApp> _signInManager;
+		readonly IUserAppService _userAppService;
 
-        public AdminController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager = null, IUserAppService userAppService = null)
-        {
-            _signInManager = signInManager;
-            _userManager = userManager;
-            _userAppService = userAppService;
-        }
+		public AdminController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager = null, IUserAppService userAppService = null)
+		{
+			_signInManager = signInManager;
+			_userManager = userManager;
+			_userAppService = userAppService;
+		}
 
-        public IActionResult Index()
-        {
-            return View(  _userAppService.GetAuditionList());
-        }
+		public IActionResult Index()
+		{
+			return View(_userAppService.GetAuditionList());
+		}
 
-        public IActionResult AddTutor()
-        {
-            return View();
-        }
+		public IActionResult AddTutor()
+		{
+			return View();
+		}
 
-        [HttpPost]
-        public async Task<IActionResult> AddTutor(UserApp tutor)
-        {
-            if (!ModelState.IsValid)
-            {
-                tutor.UserStatusId = 9;
+		[HttpPost]
+		public async Task<IActionResult> AddTutor(UserApp tutor)
+		{
+			if (!ModelState.IsValid)
+			{
+				tutor.UserStatusId = 9;
 
-                var result = await _userManager.CreateAsync(tutor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
+				var result = await _userManager.CreateAsync(tutor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
 
-                if (result.Succeeded)
-                {
-                   await _userManager.AddToRoleAsync(tutor, "Tutor");
-                }
+				if (result.Succeeded)
+				{
+					await _userManager.AddToRoleAsync(tutor, "Tutor");
+				}
 
-                return NoContent();
+				return NoContent();
 
-            }
-            return Content("burada 404 sayfasına yolla");
-        }
+			}
+			return Content("burada 404 sayfasına yolla");
+		}
 
-        public async Task<IActionResult> TutorList()
-        {
-           
-            return View(await _userAppService.GetTutors());
-        }
+		public async Task<IActionResult> TutorList()
+		{
 
-        public async Task<IActionResult> StudentList()
-        {
-            return View(await _userAppService.GetStudents());
-        }
+			return View(await _userAppService.GetTutors());
+		}
+
+		public async Task<IActionResult> StudentList()
+		{
+			return View(await _userAppService.GetStudents());
+		}
 
 
 
-        [HttpPost]
-        public IActionResult ChangeUserStatus(int UserId, int statusId)
-        {
-            return View(_userAppService.ChangeUserStatus(UserId, statusId));
-        }
+		[HttpPost]
+		public IActionResult ChangeUserStatus(int UserId, int statusId)
+		{
+			return View(_userAppService.ChangeUserStatus(UserId, statusId));
+		}
 
-        public IActionResult AddEditor()
-        {
-            return View();
-        }
+		public IActionResult AddEditor()
+		{
+			return View();
+		}
 
-        [HttpPost]
-        public async Task<IActionResult> AddEditor(UserApp editor)
-        {
-            if (!ModelState.IsValid)
-            {
-                editor.UserStatusId = 9;
+		[HttpPost]
+		public async Task<IActionResult> AddEditor(UserApp editor)
+		{
+			if (!ModelState.IsValid)
+			{
+				editor.UserStatusId = 9;
 
-                var result = await _userManager.CreateAsync(editor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
+				var result = await _userManager.CreateAsync(editor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
 
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(editor, "Editor");
-                }
+				if (result.Succeeded)
+				{
+					await _userManager.AddToRoleAsync(editor, "Editor");
+				}
 
-                return NoContent();
+				return NoContent();
 
-            }
-            return Content("burada 404 sayfasına yolla");
-        }
+			}
+			return Content("burada 404 sayfasına yolla");
+		}
 
-    }
+		public async Task<IActionResult> Logout()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction("Index", "home");
+		}
+	}
 }
