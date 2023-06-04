@@ -1,4 +1,4 @@
-﻿namespace Hackaton.Models.AddUserModel
+﻿namespace Hackaton.Models.UserApp
 {
     public class AddUserAppModel
     {

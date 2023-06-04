@@ -2,7 +2,7 @@
 using Hackaton.Core;
 using Hackaton.DAL.Abstract;
 using Hackaton.Data.Entity;
-using Hackaton.Models.AddUserModel;
+using Hackaton.Models.UserApp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

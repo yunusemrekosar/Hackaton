@@ -1,4 +1,4 @@
-﻿namespace Hackaton.Models.User
+﻿namespace Hackaton.Models.UserApp
 {
     public class UpdateUserAppModel
     {
