@@ -1,4 +1,10 @@
-﻿@{
+﻿@using Hackaton.Data.Entity;
+@model List<UserApp>
+@{
     ViewData["Title"] = "Privacy Policy";
     Layout = null;
+}
+
+@foreach(var item in Model){
+    <li>@item.Name</li>
 }
