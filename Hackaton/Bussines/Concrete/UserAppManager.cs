@@ -6,7 +6,6 @@ using Hackaton.Models.UserApp;
 using Hackaton.Models.TheClass;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hackaton.Bussines.Concrete
 {
