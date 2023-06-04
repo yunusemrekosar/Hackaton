@@ -6,18 +6,18 @@ namespace Hackaton.Core
 {
     public class MailKitService
     {
-        public bool SendMailPassword(string mailTo, string code)
+        public static bool SendMailPassword(string mailTo, string code)
         {
             var emailMessage = new MimeMessage();
             //attach =  attach.Replace("\\", "//");
-            emailMessage.From.Add(new MailboxAddress("TaskListApp(HACKLENEMEZ)", "onay@ekip2.com"));
+            emailMessage.From.Add(new MailboxAddress("Acun Abi", "onay@acunmedya.com"));
             emailMessage.To.Add(new MailboxAddress("Kullanici", mailTo));
             //emailMessage.Cc.Add(new MailboxAddress("CC you", "sahil.emirov2@gmail.com"));
             //emailMessage.Bcc.Add(new MailboxAddress("BCC you", "beststore4world@gmail.com"));
-            emailMessage.Subject = "Test Project by TaskListApp";
+            emailMessage.Subject = "Confirm Register";
             var builder = new BodyBuilder();
             string template = MailTemplate.MailPassword;
-            code = template.Replace("{password}", code).Replace("{Code}", code);
+            code = template.Replace("{confirmLink}", code);
             builder.HtmlBody = code;
             //if (attach != null)
             //builder.Attachments.Add(attach);
