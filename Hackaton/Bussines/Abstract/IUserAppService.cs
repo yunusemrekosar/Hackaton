@@ -10,6 +10,7 @@ namespace Hackaton.Bussines.Abstract
         public Task<List<UserApp>> GetTutors();
         public Task<List<UserApp>> GetStudents();
         public List<UserApp> GetAuditionList();
+        public Task<List<UserApp>> GetUnknownList();
         public bool ChangeUserStatus(int userId, int statusId);
         public List<UserApp> GetStudentsInThisClass(int classId);
         public List<UserApp> GetStudentsInThisDepartment(int departmentId);
