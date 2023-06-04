@@ -48,20 +48,25 @@ namespace Hackaton.Controllers
 					UserName = model.Email,
 					Email = model.Email,
 					EmailConfirmed = false
+					
 				};
 
 				var result = await _userManager.CreateAsync(user, model.Password);
 
+
 				if (result.Succeeded)
 				{
-					await _signInManager.SignInAsync(user, isPersistent: false);
+					await _userManager.AddToRoleAsync(user,"Unknown");
 
-					var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+					await _signInManager.SignInAsync(user, isPersistent: false);
+					string UserId = _userManager.GetUserId(User); 
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 					code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 					var callbackUrl = Url.Page(
 						"/Account/ConfirmEmail",
 						pageHandler: null,
-						values: new { area = "Identity", userId = _userManager.GetUserId(User), code = code },
+						values: new { area = "Identity", userId = UserId, code = code },
 						protocol: Request.Scheme);
 
 					MailKitService.SendMailPassword(user.Email, HtmlEncoder.Default.Encode(callbackUrl));
@@ -97,11 +102,7 @@ namespace Hackaton.Controllers
 			}
             return RedirectToAction("Insddasddex", "home");
         }
-        [HttpGet]
-		public IActionResult NewPassword()
-		{
-			return View();
-		}
+      
 
 		[HttpPost]
 		public IActionResult NewPassword(string email)
