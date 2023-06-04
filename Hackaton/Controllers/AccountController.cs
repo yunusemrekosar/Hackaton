@@ -58,7 +58,7 @@ namespace Hackaton.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    EmailConfirmed = true
+                    EmailConfirmed = false
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
