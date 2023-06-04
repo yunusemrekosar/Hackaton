@@ -4,9 +4,9 @@ using MimeKit;
 
 namespace Hackaton.Core
 {
-    public class MailKitService
+    public  class MailKitService
     {
-        public bool SendMailPassword(string mailTo, string code)
+        public static bool SendMailPassword(string mailTo, string code)
         {
             var emailMessage = new MimeMessage();
             //attach =  attach.Replace("\\", "//");

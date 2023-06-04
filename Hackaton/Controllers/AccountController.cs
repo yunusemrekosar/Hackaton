@@ -1,7 +1,11 @@
 ﻿using Hackaton.Data.Entity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text.Encodings.Web;
+using System.Text;
+using Hackaton.Core;
 
 namespace Hackaton.Controllers
 {
@@ -23,7 +27,7 @@ namespace Hackaton.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(InputModel model)
+        public async Task<IActionResult> Login(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel.InputModel model)
         {
             if (!ModelState.IsValid) 
             {
@@ -32,7 +36,8 @@ namespace Hackaton.Controllers
                 {
                     return RedirectToAction("index", "home");
                 }
-                    return NoContent();
+                return Content("burada 404 sayfasına yolla");
+
 
             }
             return Content("burada 404 sayfasına yolla");
@@ -61,6 +66,18 @@ namespace Hackaton.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var callbackUrl = Url.Page(
+                        "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { area = "Identity", userId = _userManager.GetUserId(User), code = code},
+                        protocol: Request.Scheme);
+
+                  
+                    MailKitService.SendMailPassword(user.Email,HtmlEncoder.Default.Encode(callbackUrl));
+
                     return RedirectToAction("index", "home");
                 }
 

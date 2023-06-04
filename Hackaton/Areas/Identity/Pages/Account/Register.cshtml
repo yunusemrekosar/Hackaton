@@ -1,4 +1,9 @@
-﻿
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
 @{
     Layout = null;
 }
@@ -60,3 +65,6 @@
     <script src="/js/main.js"></script>
 </body>
 </html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -5,6 +5,7 @@ using Hackaton.Data.Entity;
 using Hackaton.Services;
 using Hackaton.Services.Storage.Local;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
