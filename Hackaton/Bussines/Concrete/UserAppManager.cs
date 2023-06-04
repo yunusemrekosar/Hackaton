@@ -27,7 +27,7 @@ namespace Hackaton.Bussines.Concrete
             _userManager = userManager;
         }
 
-        public bool AddEditor(AddUserAppModel model )
+        public bool AddEditor(AddUserAppModel model ) //todo: gerekli degil?
         {
             UserApp userApp = _mapper.Map<UserApp>(model);
             _userAppDal.Create(userApp);
@@ -84,10 +84,17 @@ namespace Hackaton.Bussines.Concrete
             return new List<UserApp>(a.Select(x => (UserApp)x));
         }
 
+        public async Task<List<UserApp>> GetUnknownList()
+        {
+            var a = await _userManager.GetUsersInRoleAsync("Unknown");
+
+            return new List<UserApp>(a.Select(x => (UserApp)x));
+        }
+
         public bool UpdateUser(UpdateTheClassModel user)
         {
             UserApp upUser = _mapper.Map<UserApp>(user);
-            _context.Users.Update(upUser);
+            _userAppDal.Update(upUser);
             return true;
         }
 
@@ -97,8 +104,7 @@ namespace Hackaton.Bussines.Concrete
             {
                 UserApp upUser = _mapper.Map<UserApp>(user);
                 upUser.UserStatusId = 3;
-                _context.Users.Update(upUser);
-                _context.SaveChanges();
+                _userAppDal.Update(upUser);
                 return true;
             }
             return false;

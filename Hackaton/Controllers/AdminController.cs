@@ -23,12 +23,17 @@ namespace Hackaton.Controllers
 			_userAppService = userAppService;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			return View(_userAppService.GetAuditionList());
+			return View(await _userAppService.GetUnknownList());
 		}
 
-		public IActionResult AddTutor()
+        public IActionResult Audition()
+        {
+            return View(_userAppService.GetAuditionList());
+        }
+
+        public IActionResult AddTutor()
 		{
 			return View();
 		}
