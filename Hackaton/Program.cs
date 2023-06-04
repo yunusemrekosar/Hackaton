@@ -2,7 +2,8 @@ using AutoMapper;
 using Hackaton.Core;
 using Hackaton.Data;
 using Hackaton.Data.Entity;
-using Microsoft.AspNetCore.Identity;
+using Hackaton.Services;
+using Hackaton.Services.Storage.Local;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ builder.Services.AddDefaultIdentity<UserApp>(options => options.SignIn.RequireCo
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRegister();
+builder.Services.AddStorage<LocalStorage>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

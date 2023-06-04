@@ -1,5 +1,4 @@
 ﻿using Hackaton.Data.Entity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel;
@@ -35,7 +34,7 @@ namespace Hackaton.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
+        public async Task<IActionResult> Register(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
         {
             if (!ModelState.IsValid)
             {
