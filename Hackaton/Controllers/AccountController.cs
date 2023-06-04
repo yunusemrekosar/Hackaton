@@ -20,12 +20,7 @@ namespace Hackaton.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
+         
         [HttpPost]
         public async Task<IActionResult> Login(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel.InputModel model)
         {
@@ -42,12 +37,7 @@ namespace Hackaton.Controllers
             }
             return Content("burada 404 sayfasına yolla");
         }
-
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
+ 
 
         [HttpPost]
         public async Task<IActionResult> Register(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)

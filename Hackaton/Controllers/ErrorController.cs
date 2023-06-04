@@ -4,7 +4,7 @@ namespace Hackaton.Controllers
 {
     public class ErrorController : Controller
     {
-        public IActionResult Error404()
+        public IActionResult Index()
         {
             return View();
         }
