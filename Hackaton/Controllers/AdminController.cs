@@ -1,6 +1,7 @@
 ﻿using Hackaton.Bussines.Abstract;
 using Hackaton.Core;
 using Hackaton.DAL.Abstract;
+using Hackaton.Data;
 using Hackaton.Data.Entity;
 using Hackaton.Models.UserApp;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,7 @@ namespace Hackaton.Controllers
 		readonly UserManager<UserApp> _userManager;
 		readonly SignInManager<UserApp> _signInManager;
 		readonly IUserAppService _userAppService;
+		readonly ApplicationDbContext _context;
 
 		public AdminController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager = null, IUserAppService userAppService = null)
 		{
@@ -69,39 +71,22 @@ namespace Hackaton.Controllers
 			return View(await _userAppService.GetStudents());
 		}
 
-
-
 		[HttpPost]
 		public IActionResult ChangeUserStatus(int UserId, int statusId)
 		{
 			return View(_userAppService.ChangeUserStatus(UserId, statusId));
 		}
+		//[HttpPost]
+		//public async IActionResult ChangeUserRole(int UserId, int statusId)
+		//{
+		//	_userAppService.
 
+
+		//	return View await _userManager.AddToRoleAsync(UserId, statusId));
+		//}
 		public IActionResult AddEditor()
 		{
 			return View();
 		}
-
-		[HttpPost]
-		public async Task<IActionResult> AddEditor(UserApp editor)
-		{
-			if (!ModelState.IsValid)
-			{
-				editor.UserStatusId = 9;
-
-				var result = await _userManager.CreateAsync(editor, CodeGenerator.RandomPassword(10)); //todo burada patlayabilirsin
-
-				if (result.Succeeded)
-				{
-					await _userManager.AddToRoleAsync(editor, "Editor");
-				}
-
-				return NoContent();
-
-			}
-			return Content("burada 404 sayfasına yolla");
-		}
-
-		
 	}
 }
