@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Hackaton.Controllers
 {
-    //[Authorize(Roles = "Student , NewComer , Admin")]
+    [Authorize(Roles = "Student , NewComer , Admin")]
     public class StudentController : Controller
     {
         private readonly IUserAppService _userAppService;
