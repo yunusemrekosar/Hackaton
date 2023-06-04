@@ -19,12 +19,11 @@ namespace Hackaton.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-
-         
+        
         [HttpPost]
         public async Task<IActionResult> Login(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.LoginModel.InputModel model)
         {
-            if (!ModelState.IsValid) 
+            if (ModelState.IsValid) 
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null && await _userManager.CheckPasswordAsync(user,model.Password))  
@@ -32,8 +31,6 @@ namespace Hackaton.Controllers
                     return RedirectToAction("index", "home");
                 }
                 return Content("burada 404 sayfasına yolla");
-
-
             }
             return Content("burada 404 sayfasına yolla");
         }
@@ -42,7 +39,7 @@ namespace Hackaton.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = new UserApp()
                 {
@@ -64,29 +61,37 @@ namespace Hackaton.Controllers
                         pageHandler: null,
                         values: new { area = "Identity", userId = _userManager.GetUserId(User), code = code},
                         protocol: Request.Scheme);
-
                   
                     MailKitService.SendMailPassword(user.Email,HtmlEncoder.Default.Encode(callbackUrl));
 
                     return RedirectToAction("index", "home");
                 }
-
                 return NoContent();
-
             }
             return Content("burada 404 sayfasına yolla");
         }
 
-        [HttpGet]
-        public IActionResult ResetPassword()
+        public async Task<IActionResult> ResetPassword(string Email)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            { //todo: smtp
+                var user = await _userManager.FindByEmailAsync(Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
+                }
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Page(
+                    "/Account/ResetPassword",
+                    pageHandler: null,
+                    values: new { area = "Identity", code },
+                    protocol: Request.Scheme);
+                MailKitService.SendMailPassword(Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        [HttpPost]
-        public IActionResult ResetPassword(string email)
-        {
-            return View();
+                return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
+            }
+            return NoContent();
         }
         [HttpGet]
         public IActionResult NewPassword()
