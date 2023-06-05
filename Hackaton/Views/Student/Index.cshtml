@@ -1,0 +1,10 @@
+﻿@using Hackaton.Data.Entity;
+@model List<UserApp>
+@{
+    Layout = null;
+}
+
+@foreach(var tutor in Model)
+{
+    <li>@tutor.Name  --  @tutor.Email</li>
+}

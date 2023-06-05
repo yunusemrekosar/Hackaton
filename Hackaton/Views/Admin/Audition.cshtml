@@ -1,0 +1,84 @@
+﻿@using Hackaton.Data.Entity;
+@{
+    Layout = "_LayoutAdmin";
+}
+
+@model List<UserApp>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11" style="margin:auto; margin-top:5vh;">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bekleyenler</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap datatable">
+                        <thead>
+                            <tr>
+
+                                <th>Ülke</th>
+                                <th>İsim Soyisim</th>
+                                <th>Doğum Tarihi</th>
+                                <th>Departman</th>
+                                <th>Email</th>
+                                <th>Telefon numarası</th>
+                                <th>Son Güncellenme</th>
+                                <th>Detay</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <span class="flag flag-country-to"></span>
+                                            @item.Country
+                                        </td>
+
+                                        <td>
+                                            <a href="/task/TaskDetail?id=@item.Id" class="text-reset">@item.Name @item.LastName</a>
+                                        </td>
+
+                                        <td><p class="text-reset" tabindex="-1">@item.Birthday</p></td>
+
+                                        @if (item.Department != null)
+                                        {
+                                            <td>
+                                                @item.Department.Name;
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <span class="badge bg-danger me-1"></span> Henüz Seçilmedi
+                                            </td>
+                                        }
+                                        <td>
+                                            <p class="text-reset">@item.Email</p>
+                                        </td>
+
+                                        <td>
+                                            <p class="text-reset">@item.PhoneNumber</p>
+                                        </td>
+
+                                        <td>
+                                            @item.UpdatedOn
+                                        </td>
+
+                                        <td class="text-nowrap">
+                                            <button>detay</button>
+                                        </td>
+                                    </tr>
+                                }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
